@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-slate-100 text-slate-800 antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-slide-in {
+    animation: slideIn 0.2s ease-out forwards;
+  }
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.slate.300') transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: theme('colors.slate.300');
+    border-radius: 2px;
+  }
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .flex-wrap-mobile {
+    flex-wrap: wrap;
+  }
+  
+  /* Make tables horizontally scrollable on mobile */
+  table {
+    font-size: 0.75rem;
+  }
+  
+  /* Reduce padding on mobile */
+  .p-6 {
+    padding: 1rem;
+  }
+  
+  /* Stack header items */
+  header .gap-4 {
+    gap: 0.5rem;
+  }
+  
+  /* Admin tabs scroll */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller screens */
+  table th,
+  table td {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:block {
+    display: block !important;
+  }
+  table {
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tfoot {
+    display: table-footer-group;
+  }
+  .print\:static {
+    position: static !important;
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .print\:max-h-none {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .print\:overflow-visible {
+    overflow: visible !important;
+  }
+
+  /* Hide entire app UI when printing Cierre Z */
+  #cierre-z-print-active header,
+  #cierre-z-print-active nav,
+  #cierre-z-print-active > .flex > header,
+  #cierre-z-print-active > .flex > main {
+    display: none !important;
+  }
+  #cierre-z-print-active {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  #cierre-z-print-active > .flex {
+    display: none !important;
+  }
+  #cierre-z-print-active #cierre-z-print-doc {
+    display: block !important;
+    position: static !important;
+  }
+}
